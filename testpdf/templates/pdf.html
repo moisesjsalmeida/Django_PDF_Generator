@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testing PDF</title>
+
+    <style type="text/css">
+        /* Aqui configuramos a página: header, footer, tamanho etc */
+        @page {
+            size: a4 portrait;
+            @frame header_frame {           /* Static Frame */
+                -pdf-frame-content: header_content;
+                left: 50pt; width: 512pt; top: 50pt; height: 40pt;
+            }
+            @frame content_frame {          /* Content Frame */
+                left: 50pt; width: 512pt; top: 90pt; height: 632pt;
+            }
+            @frame footer_frame {           /* Another static Frame */
+                -pdf-frame-content: footer_content;
+                left: 50pt; width: 512pt; top: 772pt; height: 20pt;
+            }
+        }
+
+        /* Aqui nós só fazemos um css bem bagunçado pra testar se tudo tá funcionando */
+        body {
+            font-size: 14px;
+        }
+        h1 {
+            color: red;
+            font-size: 50px;
+        }
+        .author1 {
+            color: purple;
+        }
+
+        .header_text {
+            color: blue;
+            font-weight: 700;
+            font-size: large;
+        }
+
+    </style>
+
+</head>
+<body>
+
+    <!-- Este div contém o meu header padrão -> 'header_frame' -->
+    <div id="header_content">
+        <span class="header_text">Este é o Header padrão</span>
+    </div>
+
+    <!-- Este div contém o meu footer padrão -> 'footer_frame' -->
+    <div id="footer_content">
+        Página <pdf:pagenumber> de <pdf:pagecount>
+    </div>
+
+    <div id="content_frame">
+        <h1>Show Texts</h1>
+        {% for text in texts %}
+        <h6 class="author1">{{ text.author }}</h6>
+        <h3>{{ text.title }}</h3>
+        <p>{{ text.text|safe }}</p>
+        <br>
+        {% endfor %}
+
+        <h1>Repeat Texts</h1>
+        {% for text in texts %}
+        <h6>{{ text.author }}</h6>
+        <h3>{{ text.title }}</h3>
+        <p>{{ text.text|safe }}</p>
+        <br>
+        {% endfor %}
+
+        <h1>Repeat Texts</h1>
+        {% for text in texts %}
+        <h6>{{ text.author }}</h6>
+        <h3>{{ text.title }}</h3>
+        <p>{{ text.text|safe }}</p>
+        <br>
+        {% endfor %}
+
+        <h1>Repeat Texts</h1>
+        {% for text in texts %}
+        <h6>{{ text.author }}</h6>
+        <h3>{{ text.title }}</h3>
+        <p>{{ text.text|safe }}</p>
+        <br>
+        {% endfor %}
+
+        <h1>Repeat Texts</h1>
+        {% for text in texts %}
+        <h6>{{ text.author }}</h6>
+        <h3>{{ text.title }}</h3>
+        <p>{{ text.text|safe }}</p>
+        <br>
+        {% endfor %}
+
+    </div>  
+
+</body>
+</html>
