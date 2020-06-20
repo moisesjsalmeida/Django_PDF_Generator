@@ -21,35 +21,40 @@ def index(request):
 # https://xhtml2pdf.readthedocs.io/en/latest/usage.html
 # This function converts relative URLs to absolute system paths
 def link_callback(uri, rel):
-        """
-        Convert HTML URIs to absolute system paths so xhtml2pdf can access those
-        resources
-        """
-        result = finders.find(uri)
-        if result:
-                if not isinstance(result, (list, tuple)):
-                        result = [result]
-                result = list(os.path.realpath(path) for path in result)
-                path=result[0]
-        else:
-                sUrl = settings.STATIC_URL        # Typically /static/
-                sRoot = settings.STATIC_ROOT      # Typically /home/userX/project_static/
-                mUrl = settings.MEDIA_URL         # Typically /media/
-                mRoot = settings.MEDIA_ROOT       # Typically /home/userX/project_static/media/
+	"""
+	Convert HTML URIs to absolute system paths so xhtml2pdf can access those resources
+	"""
+	# Por algum motivo maluco, o finders.find não encontra o arquivo se estiver com o caminho /static/
+	uri = uri.replace("/static/", "")
+	result = finders.find(uri)
+	searched_locations = finders.searched_locations
+	if result:
+		if not isinstance(result, (list, tuple)):
+			result = [result]
+		result = list(os.path.realpath(path) for path in result)
+		path=result[0]
+	else:
+		sUrl = settings.STATIC_URL
+		sRoot = settings.STATIC_ROOT
+		mUrl = settings.MEDIA_URL   
+		mRoot = settings.MEDIA_ROOT
 
-                if uri.startswith(mUrl):
-                        path = os.path.join(mRoot, uri.replace(mUrl, ""))
-                elif uri.startswith(sUrl):
-                        path = os.path.join(sRoot, uri.replace(sUrl, ""))
-                else:
-                        return uri
+		if uri.startswith(mUrl):
+			path = os.path.join(mRoot, uri.replace(mUrl, ""))
+		elif uri.startswith(sUrl):
+			path = os.path.join(sRoot, uri.replace(sUrl, ""))
+		else:
+			return uri
 
-        # make sure that file exists
-        if not os.path.isfile(path):
-                raise Exception(
-                        'media URI must start with %s or %s' % (sUrl, mUrl)
-                )
-        return path
+	# make sure that file exists
+	if not os.path.isfile(path):
+		raise Exception(
+			'media URI must start with %s or %s' % (sUrl, mUrl)
+		)
+	print("--------------------------")
+	print("este é o path: " + path)
+	print("--------------------------")
+	return path
 
 # This view generates a pdf file from the template
 def render_pdf_from_html(request):

@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -45,12 +46,13 @@
 </head>
 <body>
 
-    <!-- Este div contém o meu header padrão -> 'header_frame' -->
+    <!-- Este div contém o meu header padrão - 'header_frame' -->
     <div id="header_content">
+        <img src="{% static 'test.png' %}">
         <span class="header_text">Este é o Header padrão</span>
     </div>
 
-    <!-- Este div contém o meu footer padrão -> 'footer_frame' -->
+    <!-- Este div contém o meu footer padrão - 'footer_frame' -->
     <div id="footer_content">
         Página <pdf:pagenumber> de <pdf:pagecount>
     </div>
