@@ -1,5 +1,7 @@
 # Django_PDF_Generator
 
+![Django_PDF_Generator](https://github.com/moisesjsalmeida/Django_PDF_Generator/blob/master/project-logo.svg)
+
 Este projeto foi um teste de geração de PDF, utilizando o [xhtml2pdf](https://github.com/xhtml2pdf/xhtml2pdf). 
 
 Neste teste, utilizamos um modelo simples de texto de blog e autor. Para edição dos textos no `/admin`, utilizamos o [CKEditor](https://github.com/django-ckeditor/django-ckeditor).
