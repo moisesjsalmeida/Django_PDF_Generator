@@ -1,6 +1,6 @@
 # Django_PDF_Generator
 
-![Django_PDF_Generator](https://github.com/moisesjsalmeida/Django_PDF_Generator/blob/master/project-logo.png)
+![Django_PDF_Generator](https://github.com/moisesjsalmeida/Django_PDF_Generator/blob/master/project-logo%400%2C25x.png)
 
 Este projeto foi um teste de geração de PDF, utilizando o [xhtml2pdf](https://github.com/xhtml2pdf/xhtml2pdf). 
 
